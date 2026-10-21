@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class Bioskop30 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int totalTiketTerjual = 0;
+        double totalPendapatan = 0;
+        int hargaTiket = 50000;
+
+        System.out.print("Masukkan jumlah pelanggan hari ini (atau ketik -99 untuk selesai): ");
+        while (true) {
+            System.out.print("Masukkan jumlah tiket yang dibeli pelanggan (0 untuk keluar): ");
+            int jmlTiket = sc.nextInt();
+
+            if (jmlTiket == 0) {
+                break;
+            }
+
+            if (jmlTiket < 0) {
+                System.out.println("Input tidak valid. Masukkan jumlah tiket yang benar!");
+                continue;
+            }
+
+            double subtotal = jmlTiket * hargaTiket;
+            double diskon = 0;
+
+            if (jmlTiket > 10) {
+                diskon = 0.15;
+            } else if (jmlTiket > 4) {
+                diskon = 0.10;
+            }
+
+            subtotal = subtotal - (subtotal * diskon);
+            
+            totalTiketTerjual += jmlTiket;
+            totalPendapatan += subtotal;
+            
+            System.out.println("Total bayar untuk " + jmlTiket + " tiket: Rp " + subtotal);
+        }
+
+        System.out.println("\n--- Rekapitulasi Penjualan Tiket Bioskop ---");
+        System.out.println("Total tiket terjual: " + totalTiketTerjual);
+        System.out.println("Total pendapatan: Rp " + totalPendapatan);
+    }
+}
